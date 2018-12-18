@@ -18,6 +18,7 @@ package io.gravitee.gateway.api;
 import io.gravitee.gateway.api.expression.TemplateEngine;
 
 import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -41,6 +42,10 @@ public interface ExecutionContext {
     String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
     String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
     String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
+
+    Request request();
+
+    Response response();
 
     <T> T getComponent(Class<T> componentClass);
 
@@ -81,6 +86,8 @@ public interface ExecutionContext {
      * @return an Enumeration of strings containing the names of the request's attributes
      */
     Enumeration<String> getAttributeNames();
+
+    Map<String, Object> getAttributes();
 
     TemplateEngine getTemplateEngine();
 }
